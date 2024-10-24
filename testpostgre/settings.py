@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app', # Добавляем наше приложение из "Шаг 5"
-    'django.contrib.postgres', #это модуль Django, который предоставляет интеграцию с базой данных PostgreSQL 
+    # 'django.contrib.postgres', #это модуль Django, который предоставляет интеграцию с базой данных PostgreSQL 
 ]
 
 MIDDLEWARE = [
@@ -76,13 +76,17 @@ WSGI_APPLICATION = 'testpostgre.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',   # Используется PostgreSQL
-        'NAME': 'postgres', # Имя базы данных
-        'USER': 'postgres', # Имя пользователя
-        'PASSWORD': 'postgres', # Пароль пользователя
-        'HOST': 'pgdb', # Наименование контейнера для базы данных в Docker Compose
-        'PORT': '5432',  # Порт базы данных
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',   # Используется PostgreSQL
+    #     'NAME': 'postgres', # Имя базы данных
+    #     'USER': 'postgres', # Имя пользователя
+    #     'PASSWORD': 'postgres', # Пароль пользователя
+    #     'HOST': 'pgdb', # Наименование контейнера для базы данных в Docker Compose
+    #     'PORT': '5432',  # Порт базы данных
+    # }
+        'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -121,7 +125,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
